@@ -4,7 +4,8 @@ module.exports = {
     "require": true,
     "module": true,
     "readline": true,
-    "print": true
+    "print": true,
+    "printErr": true
    },
    rules: {
      "no-unused-vars": [1]

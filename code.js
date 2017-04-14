@@ -1,32 +1,46 @@
-function boilerPlate() {
-  return 'test';
+function getMyShips(ships) {
+  return ships.filter(entity => entity.owner === 1);
 }
 try {
   // game loop
   while (true) { //eslint-disable-line
     const myShipCount = parseInt(readline(), 10); // the number of remaining ships
     const entityCount = parseInt(readline(), 10); // the number of entities (e.g. ships, mines or cannonballs)
+    const ships = [];
+    const barrels = [];
     for (let i = 0; i < entityCount; i += 1) {
       const inputs = readline().split(' ');
-      const entityId = parseInt(inputs[0], 10);
-      const entityType = inputs[1];
-      const x = parseInt(inputs[2], 10);
-      const y = parseInt(inputs[3], 10);
-      const arg1 = parseInt(inputs[4], 10);
-      const arg2 = parseInt(inputs[5], 10);
-      const arg3 = parseInt(inputs[6], 10);
-      const arg4 = parseInt(inputs[7], 10);
+      const type = inputs[1];
+      if (type === 'SHIP') {
+        ships.push({
+          id: parseInt(inputs[0], 10),
+          type,
+          x: parseInt(inputs[2], 10),
+          y: parseInt(inputs[3], 10),
+          orientation: parseInt(inputs[4], 10),
+          speed: parseInt(inputs[5], 10),
+          stockOfRhum: parseInt(inputs[6], 10),
+          owner: parseInt(inputs[7], 10) // 1 mine, 0 ennemy
+        });
+      } else if (type === 'BARREL') {
+        barrels.push({
+          id: parseInt(inputs[0], 10),
+          type,
+          x: parseInt(inputs[2], 10),
+          y: parseInt(inputs[3], 10),
+          quantityOfRhum: parseInt(inputs[4], 10)
+        });
+      }
     }
-    for (let i = 0; i < myShipCount; i += 1) {
-
-      // Write an action using print()
-      // To debug: printErr('Debug messages...');
-
-      print('MOVE 11 10'); // Any valid action, such as "WAIT" or "MOVE x y"
-    }
+    printErr('ships:', JSON.stringify(ships));
+    printErr('barrels:', JSON.stringify(barrels));
+    const myShips = getMyShips(ships);
+    myShips.forEach(myShip => {
+      print('MOVE 11 10');
+    });
   }
 } catch (e) {
   module.exports = {
-    boilerPlate
+    getMyShips
   };
 }
