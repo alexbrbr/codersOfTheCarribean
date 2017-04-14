@@ -1,6 +1,11 @@
 function getMyShips(ships) {
   return ships.filter(entity => entity.owner === 1);
 }
+
+function distanceBeetween(itemA, itemB) {
+  return Math.abs(itemA.x - itemB.x) + Math.abs(itemA.y - itemB.y);
+}
+
 try {
   // game loop
   while (true) { //eslint-disable-line
@@ -35,11 +40,15 @@ try {
     printErr('ships:', JSON.stringify(ships));
     printErr('barrels:', JSON.stringify(barrels));
     const myShips = getMyShips(ships);
+    printErr('myShips:', JSON.stringify(myShips));
+
     myShips.forEach(myShip => {
-      print('MOVE 11 10');
+      print(`MOVE ${barrels[0].x} ${barrels[0].y}`);
+      // print(`MOVE 10 10`);
     });
   }
 } catch (e) {
+  console.log(e);
   module.exports = {
     getMyShips
   };
