@@ -1,0 +1,18 @@
+{
+  "name": "coders-of-the-carribean",
+  "version": "1.0.0",
+  "description": "Codingame challenge",
+  "main": "code.js",
+  "scripts": {
+    "test": "node tests.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "tape": "^4.6.3"
+  },
+  "devDependencies": {
+    "eslint": "^3.19.0",
+    "eslint-config-sparkle": "0.0.1"
+  }
+}
